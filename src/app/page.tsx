@@ -21,6 +21,7 @@ export default function Home() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState<CardType | null>(null);
   const [choiceTwo, setChoiceTwo] = useState<CardType | null>(null);
+  const [disabled, setDisabled] = useState(false);
 
   const shuffleCards = () => {
     const shuffledCards = [...fruitCards, ...fruitCards]
@@ -36,10 +37,11 @@ export default function Home() {
   }
 
   const resetTurn = () => {
-    setTurns(prevTurns => prevTurns + 1);
     setTimeout(() => {
+      setTurns(prevTurns => prevTurns + 1);
       setChoiceOne(null);
       setChoiceTwo(null);
+      setDisabled(false);
     }, 500)
   }
 
@@ -49,6 +51,7 @@ export default function Home() {
 
   useEffect(() => {
     if(choiceOne && choiceTwo) {
+      setDisabled(true);
       if(choiceOne.src === choiceTwo.src){
         setCards(prevCards => {
           return prevCards.map((card) => {
@@ -79,6 +82,7 @@ export default function Home() {
                 card={card}
                 handleChoice={handleChoice}
                 flipped={card === choiceOne || card === choiceTwo || card.matched}
+                disabled={disabled}
               />
             )
           })}

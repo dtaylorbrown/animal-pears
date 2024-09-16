@@ -10,12 +10,13 @@ type CardProps = {
   card: CardType
   handleChoice: (card: CardType) => void;
   flipped: boolean;
+  disabled: boolean;
 }
 
-const Card = ({ card, handleChoice, flipped }: CardProps) => {
+const Card = ({ card, handleChoice, flipped, disabled }: CardProps) => {
 
   const handleCardSelection = () => {
-    if(!flipped) {
+    if(!disabled && !flipped) {
       handleChoice(card)
     }
   }
