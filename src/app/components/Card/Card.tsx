@@ -1,8 +1,7 @@
 import styles from "./Card.module.css"
 
 type CardProps = {
-  id: number;
-  content: string;
+  card: { id: number, src: string, matched: boolean };
   handleChoice: () => void;
   flipped: boolean;
 }
