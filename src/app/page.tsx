@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Card from "./components/Card/Card";
+import type { CardType } from "./components/Card/Card";
 
-const fruitCards = [
+const fruitCards: CardType[] = [
   { src: '🍐', matched: false }, 
   { src: '🍓', matched: false }, 
   { src: '🍇', matched: false }, 
@@ -16,10 +17,10 @@ const fruitCards = [
 ];
 
 export default function Home() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<CardType[]>([]);
   const [turns, setTurns] = useState(0);
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null);
+  const [choiceOne, setChoiceOne] = useState<CardType | null>(null);
+  const [choiceTwo, setChoiceTwo] = useState<CardType | null>(null);
 
   const shuffleCards = () => {
     const shuffledCards = [...fruitCards, ...fruitCards]
@@ -30,7 +31,7 @@ export default function Home() {
     setTurns(0)
   }
 
-  const handleChoice = (card) => {
+  const handleChoice = (card: CardType) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
 

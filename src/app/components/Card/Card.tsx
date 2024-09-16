@@ -1,8 +1,14 @@
 import styles from "./Card.module.css"
 
+export type CardType = {
+  id?: number;
+  src: string;
+  matched: boolean;
+}
+
 type CardProps = {
-  card: { id: number, src: string, matched: boolean };
-  handleChoice: () => void;
+  card: CardType
+  handleChoice: (card: CardType) => void;
   flipped: boolean;
 }
 
